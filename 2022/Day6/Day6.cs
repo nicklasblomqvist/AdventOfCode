@@ -4,14 +4,14 @@ namespace AdventOfCode2022.Day6;
 
 public interface IDay6
 {
-    public int GetStartPositionOfMarker(Stream stream);
+    public int GetStartPositionAfterUniqueSequence(Stream stream, int sequenceSize);
 }
 
 public class Day6ListImplementation : IDay6
 {
-    public int GetStartPositionOfMarker(Stream stream)
+    public int GetStartPositionAfterUniqueSequence(Stream stream, int sequenceSize)
     {
-        var sequence = new List<int>(4);
+        var sequence = new List<int>(sequenceSize);
         var potentialStartPosition = 0;
         var current = 0;
         while (stream.CanRead && current != -1)
@@ -26,7 +26,7 @@ public class Day6ListImplementation : IDay6
             
             sequence.Add(current);
 
-            if (sequence.Count == 4) { return potentialStartPosition + 4; }
+            if (sequence.Count == sequenceSize) { return potentialStartPosition + sequenceSize; }
         }
 
         return potentialStartPosition;
